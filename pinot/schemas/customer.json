@@ -1,0 +1,67 @@
+{
+  "schemaName": "customer",
+  "metricFieldSpecs": [
+    {
+      "name": "count",
+      "dataType": "INT"
+    }
+  ],
+  "dimensionFieldSpecs": [
+    {
+      "name": "id",
+      "dataType": "STRING"
+    },
+    {
+      "name": "type",
+      "dataType": "STRING"
+    },
+    {
+      "name": "gender",
+      "dataType": "STRING"
+    },
+    {
+      "name": "fname",
+      "dataType": "STRING"
+    },
+    {
+      "name": "mname",
+      "dataType": "STRING"
+    },
+    {
+      "name": "lname",
+      "dataType": "STRING"
+    },
+    {
+      "name": "fullname",
+      "dataType": "STRING"
+    },
+    {
+      "name": "suffix",
+      "dataType": "STRING"
+    },
+    {
+      "name": "title",
+      "dataType": "STRING"
+    }
+  ],
+  "dateTimeFieldSpecs": [
+    {
+      "name": "birthdt",
+      "dataType": "STRING",
+      "format": "1:DAYS:SIMPLE_DATE_FORMAT:yyyy-MM-dd",
+      "granularity": "1:DAYS"
+    },
+    {
+      "name": "joindt",
+      "dataType": "STRING",
+      "format": "1:DAYS:SIMPLE_DATE_FORMAT:yyyy-MM-dd",
+      "granularity": "1:DAYS"
+    },
+    {
+      "name": "timestamp",
+      "dataType": "TIMESTAMP",
+      "format": "1:MILLISECONDS:EPOCH",
+      "granularity": "1:MILLISECONDS"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schemaName": "phone",
+  "metricFieldSpecs": [
+    {
+      "name": "count",
+      "dataType": "INT"
+    }
+  ],
+  "dimensionFieldSpecs": [
+    {
+      "name": "id",
+      "dataType": "STRING"
+    },
+    {
+      "name": "customerid",
+      "dataType": "STRING"
+    },
+    {
+      "name": "phonetypecd",
+      "dataType": "STRING"
+    },
+    {
+      "name": "primaryind",
+      "dataType": "STRING"
+    },
+    {
+      "name": "timezone",
+      "dataType": "STRING"
+    },
+    {
+      "name": "extnbr",
+      "dataType": "STRING"
+    }
+  ],
+  "dateTimeFieldSpecs": [
+    {
+      "name": "timestamp",
+      "dataType": "TIMESTAMP",
+      "format": "1:MILLISECONDS:EPOCH",
+      "granularity": "1:MILLISECONDS"
+    }
+  ]
+}

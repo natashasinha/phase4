@@ -1,0 +1,71 @@
+{
+  "schemaName": "address",
+  "metricFieldSpecs": [
+    {
+      "name": "count",
+      "dataType": "INT"
+    }
+  ],
+  "dimensionFieldSpecs": [
+    {
+      "name": "id",
+      "dataType": "STRING"
+    },
+    {
+      "name": "customerid",
+      "dataType": "STRING"
+    },
+    {
+      "name": "formatcode",
+      "dataType": "STRING"
+    },
+    {
+      "name": "type",
+      "dataType": "STRING"
+    },
+    {
+      "name": "line1",
+      "dataType": "STRING"
+    },
+    {
+      "name": "line2",
+      "dataType": "STRING"
+    },
+    {
+      "name": "citynm",
+      "dataType": "STRING"
+    },
+    {
+      "name": "state",
+      "dataType": "STRING"
+    },
+    {
+      "name": "zip5",
+      "dataType": "STRING"
+    },
+    {
+      "name": "zip4",
+      "dataType": "STRING"
+    },
+    {
+      "name": "countrycd",
+      "dataType": "STRING"
+    },
+    {
+      "name": "latitude",
+      "dataType": "DOUBLE"
+    },
+    {
+      "name": "longitude",
+      "dataType": "DOUBLE"
+    }
+  ],
+  "dateTimeFieldSpecs": [
+    {
+      "name": "timestamp",
+      "dataType": "TIMESTAMP",
+      "format": "1:MILLISECONDS:EPOCH",
+      "granularity": "1:MILLISECONDS"
+    }
+  ]
+}

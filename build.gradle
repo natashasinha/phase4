@@ -1,0 +1,54 @@
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+
+    group = 'org.msse.demo'
+    version = '0.1.0'
+
+    java {
+      sourceCompatibility = JavaVersion.VERSION_17
+      targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+            }
+        }
+    }
+
+    jar {
+        manifest.attributes provider: 'gradle'
+    }
+
+
+    test {
+        useJUnitPlatform()
+        testLogging {
+            events "passed", "skipped", "failed"
+        }
+    }
+}
+
+apply plugin: 'docker-compose'
+
+// projectName for each project should match .env/COMPOSE_PROJECT_NAME
+// this allows for cli and gradle tasks to co-exist.
+
+dockerCompose {
+    pinot {
+        projectName = 'data-demo-pinot'
+        composeAdditionalArgs = [ '--env-file', './pinot/local/.env' ]
+        useComposeFiles = ['./pinot/local/docker-compose.yml']
+    }
+}
