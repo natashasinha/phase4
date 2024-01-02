@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "title": "org.msse.demo.domain.Email",
+  "properties": {
+    "customerid": {
+      "connect.index": 1,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "id": {
+      "type": "string",
+      "connect.index": 0
+    },
+    "email": {
+      "connect.index": 2,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    }
+  }
+}

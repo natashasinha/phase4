@@ -1,0 +1,33 @@
+{
+  "name": "data-demo-opensearch",
+  "config": {
+    "connector.class": "io.aiven.kafka.connect.opensearch.OpensearchSinkConnector",
+    "_topics": "",
+    "topics.regex": "OUT-.*",
+    "connection.url": "http://opensearch:9200",
+    "key.ignore": "true",
+    "schema.ignore": "false",
+    "type.name": "_doc",
+
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+
+    "_value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "_value.converter.schemas.enable": "false",
+
+    "value.converter" : "io.confluent.connect.json.JsonSchemaConverter",
+    "value.converter.schemas.enable": "true",
+    "value.converter.schema.registry.url": "http://schema-registry:8081",
+
+    "behavior.on.malformed.documents": "warn",
+    "transforms": "InsertMessageTime,ConvertTimeValue,ChangeTopic",
+    "transforms.InsertMessageTime.type": "org.apache.kafka.connect.transforms.InsertField$Value",
+    "transforms.InsertMessageTime.timestamp.field": "timestamp",
+    "transforms.ConvertTimeValue.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+    "transforms.ConvertTimeValue.target.type": "Timestamp",
+    "transforms.ConvertTimeValue.field": "timestamp",
+    "transforms.ConvertTimeValue.format": "yyyy-MM-dd HH:mm:ss",
+    "transforms.ChangeTopic.type": "org.apache.kafka.connect.transforms.RegexRouter",
+    "transforms.ChangeTopic.regex": "data-demo-(.*)",
+    "transforms.ChangeTopic.replacement": "$1"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "type": "object",
+  "title": "org.msse.demo.domain.Ticket",
+  "properties": {
+    "eventid": {
+      "connect.index": 2,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "price": {
+      "connect.index": 3,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "title": "io.debezium.data.VariableScaleDecimal",
+          "description": "Variable scaled decimal",
+          "connect.version": 1,
+          "properties": {
+            "scale": {
+              "type": "integer",
+              "connect.index": 0,
+              "connect.type": "int32"
+            },
+            "value": {
+              "type": "string",
+              "connect.index": 1,
+              "connect.type": "bytes"
+            }
+          }
+        }
+      ]
+    },
+    "customerid": {
+      "connect.index": 1,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "id": {
+      "type": "string",
+      "connect.index": 0
+    }
+  }
+}

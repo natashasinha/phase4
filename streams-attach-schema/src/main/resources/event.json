@@ -1,0 +1,56 @@
+{
+  "type": "object",
+  "title": "org.msse.demo.domain.Event",
+  "properties": {
+    "venueid": {
+      "connect.index": 2,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "artistid": {
+      "connect.index": 1,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "id": {
+      "type": "string",
+      "connect.index": 0
+    },
+    "eventdate": {
+      "connect.index": 4,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "capacity": {
+      "connect.index": 3,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "connect.type": "int32"
+        }
+      ]
+    }
+  }
+}
+

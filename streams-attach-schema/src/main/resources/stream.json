@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "title": "org.msse.demo.domain.Stream",
+  "properties": {
+    "customerid": {
+      "connect.index": 1,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "artistid": {
+      "connect.index": 2,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "streamtime": {
+      "connect.index": 3,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "id": {
+      "type": "string",
+      "connect.index": 0
+    }
+  }
+}

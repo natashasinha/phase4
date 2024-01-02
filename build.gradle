@@ -11,7 +11,11 @@ allprojects {
     }
 
     repositories {
+     //   mavenLocal()
         mavenCentral()
+        maven {
+            url "https://packages.confluent.io/maven/"
+        }
     }
 
     dependencies {
@@ -51,4 +55,46 @@ dockerCompose {
         composeAdditionalArgs = [ '--env-file', './pinot/local/.env' ]
         useComposeFiles = ['./pinot/local/docker-compose.yml']
     }
+}
+
+// if the run.sh script contains "./.classpath.sh" then the run is using the gradle application, and it can be run
+// by untarring the distribution, or to make life faster that is replicated by creating a classpath for the
+// application from the runtimeClasspath, as defined within gradle; so true reponse indicates to do that
+// as
+def needsClasspathSh(File file) {
+
+    def isFound = false
+
+    def reader = new BufferedReader(new FileReader(file))
+
+    // Iterate through each line in the file
+    reader.eachLine { line ->
+        if (line.contains("./.classpath.sh")) {
+            isFound = true
+            return
+        }
+    }
+
+    reader.close()
+
+    isFound
+}
+
+configure(subprojects.findAll { project -> file("${project.name}/run.sh").exists() && needsClasspathSh(file("${project.name}/run.sh"))}) {
+
+    // creates a shell file that can set the java class-path for integration tests.
+    ext.createIntegrationClasspath = { scriptName ->
+        def cp = sourceSets.main.runtimeClasspath.collect { "export CP=\"\${CP}:${it}\"" }.join("\n")
+        def file = new File(projectDir, scriptName)
+        file.text = 'export CP=""\n' + cp + '\n'
+        file.setExecutable(true)
+    }
+
+    task postBuildScript() {
+        doLast {
+            createIntegrationClasspath('./.classpath.sh')
+        }
+    }
+    build.finalizedBy postBuildScript
+
 }

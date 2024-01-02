@@ -10,3 +10,4 @@ buildscript {
 rootProject.name = 'data-demo-companion'
 
 include 'common'
+include 'streams-attach-schema'

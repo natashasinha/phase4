@@ -1,0 +1,113 @@
+{
+  "type": "object",
+  "title": "org.msse.demo.domain.Venue",
+  "properties": {
+    "zip": {
+      "connect.index": 5,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "maxcapacity": {
+      "connect.index": 8,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "connect.type": "int32"
+        }
+      ]
+    },
+    "city": {
+      "connect.index": 3,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "street": {
+      "connect.index": 2,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "latitude": {
+      "connect.index": 6,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "number",
+          "title": "org.apache.kafka.connect.data.Decimal",
+          "connect.version": 1,
+          "connect.type": "bytes",
+          "connect.parameters": {
+            "scale": "6",
+            "connect.decimal.precision": "9"
+          }
+        }
+      ]
+    },
+    "name": {
+      "connect.index": 1,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "id": {
+      "type": "string",
+      "connect.index": 0
+    },
+    "state": {
+      "connect.index": 4,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "longitude": {
+      "connect.index": 7,
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "number",
+          "title": "org.apache.kafka.connect.data.Decimal",
+          "connect.version": 1,
+          "connect.type": "bytes",
+          "connect.parameters": {
+            "scale": "6",
+            "connect.decimal.precision": "9"
+          }
+        }
+      ]
+    }
+  }
+}

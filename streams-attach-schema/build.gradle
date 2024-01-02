@@ -1,0 +1,24 @@
+
+
+apply plugin: 'application'
+
+dependencies {
+
+    implementation group: 'io.confluent', name: 'kafka-streams-json-schema-serde', version: '7.5.1'
+
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jackson_version
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jackson_version
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: jackson_version
+
+    implementation group: 'org.apache.kafka', name: 'kafka-streams', version: kafka_version
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: commons_lang3_version
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: slf4j_version
+
+    runtimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: logback_version
+
+}
+
+application {
+    mainClass = "org.msse."
+}
+
