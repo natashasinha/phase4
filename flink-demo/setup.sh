@@ -27,7 +27,8 @@ echo ""
 
 echo "launch application"
 echo ""
-(cd application; gradle build shadowJar; cp ./build/libs/flink_demo_application-0.1.0-all.jar ../../flink/jars)
+(cd ..; ./gradlew flink_demo_application:build flink_demo_application:shadowJar)
+(cd application; cp ./build/libs/flink_demo_application-0.1.0-all.jar ../../flink/jars)
 
 # for some reason running the below command will sometimes not have the jar available
 sleep 1

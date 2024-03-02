@@ -41,6 +41,6 @@ installPlugins "${CONNECTORS[@]}"
 
 echo "installing avro specification"
 
-cp -r ./application/src/main/avro/order.avsc ../connect/data/datagen
+#cp -r ./application/src/main/avro/order.avsc ../connect/data/datagen
 
 echo "installation of connectors and needed data for connectors completed."
