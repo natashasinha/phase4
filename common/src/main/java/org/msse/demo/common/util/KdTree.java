@@ -31,46 +31,19 @@ import static java.lang.Math.sin;
  */
 public class KdTree<T extends KdTree.XYZPoint> implements Iterable<T> {
 
+  private static final double EARTH_RADIUS_KM = 6371.0;
+
   private final int k = 3;
   private KdNode root = null;
 
-  private static final Comparator<XYZPoint> X_COMPARATOR = new Comparator<>() {
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int compare(XYZPoint o1, XYZPoint o2) {
-      return Double.compare(o1.x, o2.x);
-    }
-  };
-
-  private static final Comparator<XYZPoint> Y_COMPARATOR = new Comparator<>() {
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int compare(XYZPoint o1, XYZPoint o2) {
-      return Double.compare(o1.y, o2.y);
-    }
-  };
-
-  private static final Comparator<XYZPoint> Z_COMPARATOR = new Comparator<>() {
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int compare(XYZPoint o1, XYZPoint o2) {
-      return Double.compare(o1.z, o2.z);
-    }
-  };
+  private static final Comparator<XYZPoint> X_COMPARATOR = Comparator.comparingDouble(o -> o.x);
+  private static final Comparator<XYZPoint> Y_COMPARATOR = Comparator.comparingDouble(o -> o.y);
+  private static final Comparator<XYZPoint> Z_COMPARATOR = Comparator.comparingDouble(o -> o.z);
 
   protected static final int X_AXIS = 0;
   protected static final int Y_AXIS = 1;
   protected static final int Z_AXIS = 2;
 
-  /**
-   * Default constructor.
-   */
   public KdTree() {
   }
 
@@ -111,11 +84,11 @@ public class KdTree<T extends KdTree.XYZPoint> implements Iterable<T> {
 
     int axis = depth % k;
     if (axis == X_AXIS)
-      Collections.sort(list, X_COMPARATOR);
+      list.sort(X_COMPARATOR);
     else if (axis == Y_AXIS)
-      Collections.sort(list, Y_COMPARATOR);
+      list.sort(Y_COMPARATOR);
     else
-      Collections.sort(list, Z_COMPARATOR);
+      list.sort(Z_COMPARATOR);
 
     KdNode node = null;
     List<XYZPoint> less = new ArrayList<>(list.size());
@@ -364,7 +337,7 @@ public class KdTree<T extends KdTree.XYZPoint> implements Iterable<T> {
 
     // Search node
     KdNode lastNode = null;
-    Double lastDistance = Double.MAX_VALUE;
+    double lastDistance = Double.MAX_VALUE;
     if (!results.isEmpty()) {
       lastNode = results.last();
       lastDistance = lastNode.id.euclideanDistance(value);
@@ -447,9 +420,6 @@ public class KdTree<T extends KdTree.XYZPoint> implements Iterable<T> {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public String toString() {
     return TreePrinter.getString(this);
@@ -463,9 +433,6 @@ public class KdTree<T extends KdTree.XYZPoint> implements Iterable<T> {
       this.point = point;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int compare(KdNode o1, KdNode o2) {
       Double d1 = point.euclideanDistance(o1.id);
@@ -570,36 +537,29 @@ public class KdTree<T extends KdTree.XYZPoint> implements Iterable<T> {
 
     /**
      * z is defaulted to zero.
-     *
-     * @param x
-     * @param y
      */
-    public XYZPoint(double x, double y) {
-      this.x = x;
-      this.y = y;
-      this.z = 0;
-    }
-
-    /**
-     * Default constructor
-     *
-     * @param x
-     * @param y
-     * @param z
-     */
-    public XYZPoint(double x, double y, double z) {
-      this.x = x;
-      this.y = y;
-      this.z = z;
-    }
+//    public XYZPoint(double x, double y) {
+//      this.x = x;
+//      this.y = y;
+//      this.z = 0;
+//    }
+//
+//
+//    public XYZPoint(double x, double y, double z) {
+//      this.x = x;
+//      this.y = y;
+//      this.z = z;
+//    }
 
     /**
      * Does not use R to calculate x, y, and z. Where R is the approximate radius of earth (e.g. 6371KM).
      */
     public XYZPoint(Double latitude, Double longitude) {
-      x = cos(Math.toRadians(latitude)) * cos(Math.toRadians(longitude));
-      y = cos(Math.toRadians(latitude)) * sin(Math.toRadians(longitude));
-      z = sin(Math.toRadians(latitude));
+      x = EARTH_RADIUS_KM * cos(Math.toRadians(latitude)) * cos(Math.toRadians(longitude));
+      y = EARTH_RADIUS_KM * cos(Math.toRadians(latitude)) * sin(Math.toRadians(longitude));
+      z = EARTH_RADIUS_KM * sin(Math.toRadians(latitude));
+
+      System.out.println(" x=" + x + " y=" + y + " z=" + z);
     }
 
     public double getX() {

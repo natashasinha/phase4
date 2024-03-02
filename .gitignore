@@ -5,3 +5,10 @@ build
 *.iml
 
 .classpath.sh
+
+/kafka-1/connect-plugins
+/kafka-1/connect-data
+
+/flink/jars
+
+/tmp

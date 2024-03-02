@@ -11,3 +11,6 @@ rootProject.name = 'data-demo-companion'
 
 include 'common'
 include 'streams-attach-schema'
+include 'flink_demo_application'
+
+project(":flink_demo_application").projectDir = file('flink-demo/application')
