@@ -1,5 +1,5 @@
 
-1. build.sh -- to install the datagen connectory in the kafka-1/connector-plugins directory
+1. install dategen manually
 
 2. up.sh -- to start kafka-1 and flink 
 

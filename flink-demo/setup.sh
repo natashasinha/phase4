@@ -10,6 +10,7 @@ echo ""
 echo "installing avro specification to connect cluster for datagen"
 echo ""
 
+mkdir -p ../kafka-1/connect-data/datagen
 cp -r ./application/src/main/avro/order.avsc ../kafka-1/connect-data/datagen
 
 echo "creating topics"
