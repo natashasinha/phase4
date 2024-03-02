@@ -14,8 +14,12 @@ cp -r ./application/src/main/avro/order.avsc ../kafka-1/connect-data/datagen
 
 echo "creating topics"
 echo ""
-kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --partitions 4 --topic datagen.orders
-kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --partitions 4 --topic purchase-orders
+#kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --partitions 4 --topic datagen.orders
+#kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --partitions 4 --topic purchase-orders
+
+docker exec -it kafka1_broker-1 sh -c "kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --partitions 4 --topic datagen.orders"
+docker exec -it kafka1_broker-1 sh -c "kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --partitions 4 --topic purchase-orders"
+
 
 echo "creating connector 'datagen-orders'"
 echo ""
