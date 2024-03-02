@@ -1,0 +1,27 @@
+{
+  "namespace": "io.kineticedge.order",
+  "name": "OrderEnriched",
+  "type": "record",
+  "fields": [
+    {
+      "name": "orderId",
+      "type": {
+        "type": "int",
+        "arg.properties": {
+          "iteration": {
+            "start": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "enriched",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "regex": "[A-Z]{4}"
+        }
+      }
+    }
+  ]
+}
