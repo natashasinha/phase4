@@ -19,12 +19,13 @@ echo ""
 #kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --partitions 4 --topic purchase-orders
 
 docker exec -it ddc_kafka1_broker-1 sh -c "kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --partitions 4 --topic datagen.orders"
+docker exec -it ddc_kafka1_broker-1 sh -c "kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --partitions 4 --topic datagen.orders.enriched"
 docker exec -it ddc_kafka1_broker-1 sh -c "kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --partitions 4 --topic purchase-orders"
-
 
 echo "creating connector 'datagen-orders'"
 echo ""
 ./connect.sh create ./connectors/datagen-orders.json
+./connect.sh create ./connectors/datagen-orders-enriched.json
 
 echo "launch application"
 echo ""
