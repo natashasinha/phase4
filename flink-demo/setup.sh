@@ -12,6 +12,7 @@ echo ""
 
 mkdir -p ../kafka-1/connect-data/datagen
 cp -r ./application/src/main/avro/order.avsc ../kafka-1/connect-data/datagen
+cp -r ./application/src/main/avro/order-enriched.avsc ../kafka-1/connect-data/datagen
 
 echo "creating topics"
 echo ""
