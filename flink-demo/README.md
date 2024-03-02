@@ -32,10 +32,10 @@
 
    * inspect topic to verify there is no pricing
  
-   * `./consume.sh datagen.orders`
+   * `./consumer.sh datagen.orders`
    
 7. consume `purchase-orders`
 
    * inspect topic to verify pricing has been done
 
-   * `./consume.sh purchase-orders`
+   * `./consumer.sh purchase-orders`
