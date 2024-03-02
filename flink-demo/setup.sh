@@ -27,9 +27,12 @@ echo ""
 
 echo "launch application"
 echo ""
-(cd application; gradle build shadowJar; cp ./build/libs/flink_application-all.jar ../../flink/jars)
+(cd application; gradle build shadowJar; cp ./build/libs/flink_demo_application-0.1.0-all.jar ../../flink/jars)
 
-docker exec -it flink_jobmanager sh -c "flink run -p 4 --detached /jars/flink_application-all.jar"
+# for some reason running the below command will sometimes not have the jar available
+sleep 1
+
+docker exec -it flink_jobmanager sh -c "flink run -p 4 --detached /jars/flink_demo_application-0.1.0-all.jar"
 
 echo ""
 echo "setup completed."
