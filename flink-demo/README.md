@@ -1,6 +1,8 @@
 
 1. install dategen manually
 
+* Install jq https://stedolan.github.io/jq or `brew install jq`
+
 2. up.sh -- to start kafka-1 and flink 
 
 3. setup.sh 
