@@ -1,9 +1,15 @@
 #!/bin/bash
 
+set -e
+cd "$(dirname -- "$0")"
+
+export PATH=./bin:${PATH}
 
 if ! [ -x "$(command -v jq)" ]; then
     echo ""
     echo "jq is not found, please install and make it available on your path, https://stedolan.github.io/jq"
+    echo ""
+    echo "The './bin' directory in flink-demo is added to the classpath"
     echo ""
     exit
 fi

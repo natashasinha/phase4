@@ -11,4 +11,6 @@ build
 
 /flink/jars
 
+/flink-demo/bin
+
 /tmp
