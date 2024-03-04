@@ -1,11 +1,49 @@
+0. Install Needed Software Components
 
-1. install dategen manually
+   * Install the DataGen Connector, this connector is used to generate fake data.
 
-* Install jq https://stedolan.github.io/jq or `brew install jq`
+     * The `./install-connector.sh` script does this for you, it will pull the connector from the internet using curl,
+   and then unzipping it. This is done in the `kafka-1/connect-plugins` directory.
 
-2. up.sh -- to start kafka-1 and flink 
+     * Verify by inspecting the directory.
 
-3. setup.sh 
+      ```
+      → ls -al ../kafka-1/connect-plugins
+      total 15288
+      drwxr-xr-x  5 buesing  staff      160 Mar  3 08:31 .
+      drwxr-xr-x  6 buesing  staff      192 Mar  2 07:51 ..
+      -rw-r--r--  1 buesing  staff        0 Mar  1 19:22 .gitkeep
+      drwxr-xr-x  7 buesing  staff      224 Feb 22 13:18 confluentinc-kafka-connect-datagen-0.6.4
+      -rw-r--r--  1 buesing  staff  7823793 Mar  3 08:31 confluentinc-kafka-connect-datagen-0.6.4.zip
+      ```
+
+   * Install `jq`
+
+      * The command `jq` may already be installed; check to see if you have `jq` installed, but by just running `jq` on the command line
+
+      ```
+      → jq
+      jq - commandline JSON processor [version 1.7]
+   
+      Usage:	jq [options] <jq filter> [file...]
+      ...
+      ```
+
+      * If it is not installed, use various installers to install it (e.g. brew on MacOS). Or if you want to install it only for this this project, you can
+      run `install-jq.sh` which will place it in the demo's bin directory (that scripts will put on their classpath).
+
+      ```
+      → ls -al bin
+      total 1664
+      drwxr-xr-x   4 buesing  staff     128 Mar  4 07:31 .
+      drwxr-xr-x  17 buesing  staff     544 Mar  4 07:37 ..
+      -rw-r--r--   1 buesing  staff       0 Mar  4 07:31 .gitkeep
+      -rwxr-xr-x@  1 buesing  staff  807984 Mar  3 09:55 jq
+      ```
+
+1. up.sh -- to start kafka-1 and flink 
+
+2. setup.sh 
 
    a. copy the datagen avro file into the connector data directory
 
@@ -20,21 +58,21 @@
 
       * creates as a shadowJar (not my first choice, but easiest for demos)
 
-      * copy jar to directory accessible by the jobmanager containers
+      * copy jar to directory accessible by the job-manager containers
 
    e. start the flink application
  
       * set parallelization to 4 -- the same number as the partitions on the topic
    
-4. Goto http://localhost:48081/ and check out Flink
+3. Goto http://localhost:48081/ and check out Flink
 
-5. consume `datagen.orders`
+4. consume `datagen.orders`
 
    * inspect topic to verify there is no pricing
  
    * `./consumer.sh datagen.orders`
    
-7. consume `purchase-orders`
+5. consume `purchase-orders`
 
    * inspect topic to verify pricing has been done
 
