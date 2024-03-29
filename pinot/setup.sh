@@ -25,24 +25,36 @@ alias dc='docker compose'
 #
 # schemas must align to how the data is represented on the kafka topic.
 #
+pinot schema venue
 pinot schema email
 pinot schema phone
 pinot schema customer
 pinot schema address
+pinot schema artist
 pinot schema ticket
+pinot schema event
+pinot schema stream
 
 #
 # kafka topics must exist before the tables are created in pinot, since tables also define where the data is coming from
 #
+kt --create --if-not-exists --partitions 4 --topic data-demo-venues
 kt --create --if-not-exists --partitions 4 --topic data-demo-emails
 kt --create --if-not-exists --partitions 4 --topic data-demo-phones
 kt --create --if-not-exists --partitions 4 --topic data-demo-customers
 kt --create --if-not-exists --partitions 4 --topic data-demo-addresses
+kt --create --if-not-exists --partitions 4 --topic data-demo-artists
 kt --create --if-not-exists --partitions 4 --topic data-demo-tickets
+kt --create --if-not-exists --partitions 4 --topic data-demo-events
+kt --create --if-not-exists --partitions 4 --topic data-demo-streams
 
+pinot table venue
 pinot table email
 pinot table phone
 pinot table customer
 pinot table address
+pinot table artist
 pinot table ticket
+pinot table event
+pinot table stream
 
