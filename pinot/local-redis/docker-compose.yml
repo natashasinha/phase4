@@ -1,0 +1,26 @@
+networks:
+  default:
+    external: true
+    name: dev-local
+
+volumes:
+  cache: {}
+
+services:
+  redis:
+    image: redis:6.2-alpine
+    hostname: redis
+    container_name: redis
+    healthcheck:
+      test: nc -z localhost 6379 || exit 1
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    restart: always
+    ports:
+      - '6379:6379'
+#   # --save 20 1 instructs the server to save 1 or more writes every 20 seconds to disk in case the server restarts
+    command: redis-server --save 20 1 --loglevel warning # --requirepass redis-cache
+    volumes:
+      - cache:/data
