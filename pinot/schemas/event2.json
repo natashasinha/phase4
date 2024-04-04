@@ -1,12 +1,12 @@
 {
-  "schemaName": "venue",
+  "schemaName": "event2",
   "metricFieldSpecs": [
     {
       "name": "count",
       "dataType": "INT"
     },
     {
-      "name": "maxcapacity",
+      "name": "capacity",
       "dataType": "LONG"
     }
   ],
@@ -17,6 +17,10 @@
     },
     {
       "name": "artistid",
+      "dataType": "STRING"
+    },
+    {
+      "name": "venueid",
       "dataType": "STRING"
     }
   ],

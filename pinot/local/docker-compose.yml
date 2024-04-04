@@ -11,6 +11,7 @@ volumes:
   pinot_controller_data: {}
   pinot_broker_data: {}
   pinot_server_data: {}
+  pinot_local_storage: {}
 
 services:
 
@@ -37,7 +38,7 @@ services:
     image: apachepinot/pinot:${VERSION}
     hostname: pinot-controller
     container_name: pinot-controller
-    command: "StartController -clusterName 'Pinot' -zkAddress pinot-zookeeper:2181 -config /opt/pinot/configs/pinot-controller.conf -dataDir /opt/pinot/data/pinotServerData"
+    command: "StartController -clusterName 'Pinot' -zkAddress pinot-zookeeper:2181 -config /opt/pinot/configs/pinot-controller.conf"
     restart: unless-stopped
     healthcheck:
       test: curl --fail http://localhost:9000/health || exit 1
@@ -52,10 +53,35 @@ services:
       - "9000:9000"
     volumes:
       - pinot_controller_data:/opt/pinot/data
+      - pinot_local_storage:/opt/storage
       - ./configs:/opt/pinot/configs
     environment:
       LOG4J_CONSOLE_LEVEL: DEBUG
       JAVA_OPTS: "-Dplugins.dir=/opt/pinot/plugins -Xms1G -Xmx4G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xloggc:gc-pinot-controller.log"
+
+  pinot-server:
+    image: apachepinot/pinot:${VERSION}
+    hostname: pinot-server
+    container_name: pinot-server
+    command: "StartServer -clusterName 'Pinot' -zkAddress pinot-zookeeper:2181 -config /opt/pinot/configs/pinot-server.conf"
+#    command: "StartServer -clusterName 'Pinot' -zkAddress pinot-zookeeper:2181 -config /opt/pinot/configs/pinot-server.conf -segmentDir /opt/pinot/data/pinotSegments -dataDir /opt/pinot/data/pinotServerData"
+    restart: unless-stopped
+    healthcheck:
+      test: curl --fail http://localhost:8097/health || exit 1
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      pinot-controller:
+        condition: service_healthy
+    volumes:
+      - pinot_server_data:/opt/pinot/data
+      - pinot_local_storage:/opt/storage
+      - ./configs:/opt/pinot/configs
+    environment:
+      LOG4J_CONSOLE_LEVEL: DEBUG
+      JAVA_OPTS: "-Dplugins.dir=/opt/pinot/plugins -Xms4G -Xmx16G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xloggc:gc-pinot-server.log"
 
   pinot-broker:
     image: apachepinot/pinot:${VERSION}
@@ -81,24 +107,3 @@ services:
       LOG4J_CONSOLE_LEVEL: DEBUG
       JAVA_OPTS: "-Dplugins.dir=/opt/pinot/plugins -Xms4G -Xmx4G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xloggc:gc-pinot-broker.log"
 
-  pinot-server:
-    image: apachepinot/pinot:${VERSION}
-    hostname: pinot-server
-    container_name: pinot-server
-    command: "StartServer -clusterName 'Pinot' -zkAddress pinot-zookeeper:2181 -segmentDir /opt/pinot/data/pinotSegments -dataDir /opt/pinot/data/pinotServerData"
-    restart: unless-stopped
-    healthcheck:
-      test: curl --fail http://localhost:8097/health || exit 1
-      start_period: 5s
-      interval: 5s
-      timeout: 5s
-      retries: 3
-    depends_on:
-      pinot-controller:
-        condition: service_healthy
-    volumes:
-      - pinot_server_data:/opt/pinot/data
-      - ./configs:/opt/pinot/configs
-    environment:
-      LOG4J_CONSOLE_LEVEL: DEBUG
-      JAVA_OPTS: "-Dplugins.dir=/opt/pinot/plugins -Xms4G -Xmx16G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xloggc:gc-pinot-server.log"

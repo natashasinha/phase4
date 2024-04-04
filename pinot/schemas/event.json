@@ -4,6 +4,10 @@
     {
       "name": "count",
       "dataType": "INT"
+    },
+    {
+      "name": "capacity",
+      "dataType": "LONG"
     }
   ],
   "dimensionFieldSpecs": [
@@ -18,19 +22,16 @@
     {
       "name": "venueid",
       "dataType": "STRING"
-    },
-    {
-      "name": "capacity",
-      "dataType": "STRING"
     }
   ],
   "dateTimeFieldSpecs": [
     {
       "name": "eventdate",
       "dataType": "STRING",
-      "format": "1:DAYS:SIMPLE_DATE_FORMAT:yyyy-MM-dd",
+      "format": "SIMPLE_DATE_FORMAT|yyyy-MM-dd HH:mm:ss.SSS",
       "granularity": "1:DAYS"
     },
+
     {
       "name": "timestamp",
       "dataType": "TIMESTAMP",

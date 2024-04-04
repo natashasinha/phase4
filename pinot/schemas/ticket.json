@@ -4,6 +4,10 @@
     {
       "name": "count",
       "dataType": "INT"
+    },
+    {
+      "name": "price",
+      "dataType": "DOUBLE"
     }
   ],
   "dimensionFieldSpecs": [
@@ -18,10 +22,6 @@
     {
       "name": "eventid",
       "dataType": "STRING"
-    },
-    {
-      "name": "price",
-      "dataType": "DOUBLE"
     }
   ],
   "dateTimeFieldSpecs": [
