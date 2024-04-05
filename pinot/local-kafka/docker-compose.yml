@@ -20,7 +20,7 @@ services:
       start_period: 5s
       interval: 5s
       timeout: 5s
-      retries: 3
+      retries: 10
     ports:
       # port 9092 can be used for broker discovery, but 19092 will be actually port used for kafka protocol
       - '9092:19092'

@@ -24,7 +24,7 @@ services:
       start_period: 5s
       interval: 5s
       timeout: 5s
-      retries: 3
+      retries: 10
     volumes:
       - zk:/data
       - zk_datalog:/datalog
@@ -45,7 +45,7 @@ services:
       start_period: 5s
       interval: 5s
       timeout: 5s
-      retries: 3
+      retries: 10
     depends_on:
       pinot-zookeeper:
         condition: service_healthy
@@ -71,7 +71,7 @@ services:
       start_period: 5s
       interval: 5s
       timeout: 5s
-      retries: 3
+      retries: 10
     depends_on:
       pinot-controller:
         condition: service_healthy
@@ -94,7 +94,7 @@ services:
       start_period: 5s
       interval: 5s
       timeout: 5s
-      retries: 3
+      retries: 10
     depends_on:
       pinot-controller:
         condition: service_healthy
