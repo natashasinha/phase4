@@ -20,3 +20,16 @@ select venueid, sum(capacity) from foo group by 1
 ```
 explain plan for select venueid, sum(capacity) from foo group by 1
 ```
+
+update data-demo/mockdata-daemon to produce more events, here is an example:
+
+KafkaDaemon
+```
+  // every 20 seconds
+  @Scheduled(cron = "*/5 * * * * *")
+  public void createEvent() {
+    IntStream.range(0, 1000).forEach(i -> {
+      musicService.createEvent();
+    });
+  }
+```
