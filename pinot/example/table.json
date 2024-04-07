@@ -1,9 +1,9 @@
 {
-  "tableName": "{{TABLE}}",
+  "tableName": "foo",
   "tableType": "REALTIME",
   "segmentsConfig": {
     "timeColumnName": "timestamp",
-    "schemaName": "{{SCHEMA}}",
+    "schemaName": "foo",
     "replication": "1",
     "replicasPerPartition": "1",
     "timeType": "MINUTES"

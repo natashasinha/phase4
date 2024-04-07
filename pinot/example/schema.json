@@ -1,5 +1,5 @@
 {
-  "schemaName": "event2",
+  "schemaName": "foo",
   "metricFieldSpecs": [
     {
       "name": "count",
