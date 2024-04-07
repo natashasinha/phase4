@@ -58,5 +58,3 @@ pinot table ticket
 pinot table event
 pinot table stream
 
-./pinot2.sh schema event2
-./pinot2.sh table event2
