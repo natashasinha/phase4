@@ -52,7 +52,7 @@ case "${OPERATION}" in
       curl -s -X DELETE -H $CONTENT_TYPE_HDR "$URL/tables/$NAME_PLURAL" | jq
     else
       TEMPLATE="$(<./scripts/table_template.json)"
-      TEMPLATE="${TEMPLATE//\{\{TABLE\}\}/$NAME_PLURAL}"
+      TEMPLATE="${TEMPLATE//\{\{TABLE\}\}/$NAME}"
       TEMPLATE="${TEMPLATE//\{\{SCHEMA\}\}/$NAME}"
       TEMPLATE="${TEMPLATE//\{\{TOPIC\}\}/$NAME_PLURAL}"
 
