@@ -1,0 +1,52 @@
+networks:
+  default:
+    external: true
+    name: dev-local
+
+volumes:
+  db: {}
+  configdb: {}
+
+services:
+  opensearch:
+    image: opensearchproject/opensearch:$VERSION
+    container_name: opensearch
+    hostname: opensearch
+    environment:
+      - "discovery.type=single-node"
+      - "plugins.security.disabled=true"
+    ports:
+      - "9200:9200"
+
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:$VERSION
+    container_name: opensearch-dashboards
+    hostname: opensearch-dashboards
+    ports:
+      - "5601:5601"
+    environment:
+      - "OPENSEARCH_HOSTS=http://opensearch:9200"
+      - "DISABLE_SECURITY_DASHBOARDS_PLUGIN=true"
+    depends_on:
+      - opensearch
+
+  mongo:
+    image: mongo:5.0.9
+    hostname: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    #    healthcheck:
+    #      test: test $$(echo "mongo -u $${MONGO_INITDB_ROOT_USERNAME} -p $${MONGO_INITDB_ROOT_PASSWORD} --quiet) -eq 1
+    #  interval: 10s
+    #  start_period: 30s
+    volumes:
+      - db:/data/db
+      - configdb:/data/configdb
+      - ./db-init/:/docker-entrypoint-initdb.d
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mongo
+      MONGO_INITDB_DATABASE: main
+      MONGO_USER: mongo_user
+      MONGO_PASSWORD: mongo_password
