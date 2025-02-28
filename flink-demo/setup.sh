@@ -22,6 +22,7 @@ echo ""
 docker exec -it ddc_kafka1_broker-1 sh -c "kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --partitions 4 --topic datagen.orders"
 docker exec -it ddc_kafka1_broker-1 sh -c "kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --partitions 4 --topic datagen.orders.enriched"
 docker exec -it ddc_kafka1_broker-1 sh -c "kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --partitions 4 --topic purchase-orders"
+docker exec -it ddc_kafka1_broker-1 sh -c "kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --partitions 4 --topic purchase-orders-2"
 
 echo "creating connector 'datagen-orders'"
 echo ""
