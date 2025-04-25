@@ -1,0 +1,20 @@
+{
+  "schemaName": "EnrichedEventSales",
+  "dimensionFieldSpecs": [
+    {"name": "eventId", "dataType": "STRING"},
+    {"name": "artistId", "dataType": "STRING"},
+    {"name": "venueId", "dataType": "STRING"}
+  ],
+  "metricFieldSpecs": [
+    {"name": "soldTickets", "dataType": "LONG"},
+    {"name": "capacity", "dataType": "INT"}
+  ],
+  "dateTimeFieldSpecs": [
+    {
+      "name": "startDate",
+      "dataType": "LONG",
+      "format": "1:MILLISECONDS:EPOCH",
+      "granularity": "1:MILLISECONDS"
+    }
+  ]
+}
