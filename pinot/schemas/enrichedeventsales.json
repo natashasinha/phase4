@@ -2,12 +2,10 @@
   "schemaName": "EnrichedEventSales",
   "dimensionFieldSpecs": [
     {"name": "eventId", "dataType": "STRING"},
-    {"name": "artistId", "dataType": "STRING"},
-    {"name": "venueId", "dataType": "STRING"}
+    {"name": "artistId", "dataType": "STRING"}
   ],
   "metricFieldSpecs": [
-    {"name": "soldTickets", "dataType": "LONG"},
-    {"name": "capacity", "dataType": "INT"}
+    {"name": "soldOutCount", "dataType": "LONG"}
   ],
   "dateTimeFieldSpecs": [
     {
