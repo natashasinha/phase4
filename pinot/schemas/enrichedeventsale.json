@@ -1,16 +1,23 @@
 {
-  "schemaName": "EnrichedEventSales",
+  "schemaName": "enrichedeventsale",
   "dimensionFieldSpecs": [
     {"name": "eventId", "dataType": "STRING"},
     {"name": "artistId", "dataType": "STRING"}
   ],
   "metricFieldSpecs": [
-    {"name": "soldOutCount", "dataType": "LONG"}
+    {
+      "name": "soldOutCount",
+      "dataType": "LONG"
+    },
+    {
+      "name": "count",
+      "dataType": "INT"
+    }
   ],
   "dateTimeFieldSpecs": [
     {
-      "name": "startDate",
-      "dataType": "LONG",
+      "name": "timestamp",
+      "dataType": "TIMESTAMP",
       "format": "1:MILLISECONDS:EPOCH",
       "granularity": "1:MILLISECONDS"
     }

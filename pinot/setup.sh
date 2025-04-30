@@ -34,7 +34,7 @@ pinot schema artist
 pinot schema ticket
 pinot schema event
 pinot schema stream
-pinot schema enrichedeventsales
+pinot schema enrichedeventsale
 
 #
 # kafka topics must exist before the tables are created in pinot, since tables also define where the data is coming from
@@ -59,4 +59,4 @@ pinot table artist
 pinot table ticket
 pinot table event
 pinot table stream
-pinot table enrichedeventsales
+pinot table enrichedeventsale
