@@ -1,0 +1,39 @@
+{
+  "schemaName": "TopUniqueStreamingCustomersResult",
+  "metricFieldSpecs": [
+    {
+      "name": "count",
+      "dataType": "INT"
+    }
+  ],
+  "dimensionFieldSpecs": [
+    {
+      "name": "streamId",
+      "dataType": "STRING"
+    },
+    {
+      "name": "customerId",
+      "dataType": "STRING"
+    },
+    {
+      "name": "artistId",
+      "dataType": "STRING"
+    },
+    {
+      "name": "customerState",
+      "dataType": "STRING"
+    },
+    {
+      "name": "artistName",
+      "dataType": "STRING"
+    }
+  ],
+  "dateTimeFieldSpecs": [
+    {
+      "name": "timestamp",
+      "dataType": "TIMESTAMP",
+      "format": "1:MILLISECONDS:EPOCH",
+      "granularity": "1:MILLISECONDS"
+    }
+  ]
+}
