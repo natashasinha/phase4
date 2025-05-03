@@ -35,6 +35,7 @@ pinot schema ticket
 pinot schema event
 pinot schema stream
 pinot schema enrichedeventsale
+pinot schema TopUniqueStreamingCustomersResult
 
 #
 # kafka topics must exist before the tables are created in pinot, since tables also define where the data is coming from
@@ -49,6 +50,7 @@ kt --create --if-not-exists --partitions 4 --topic data-demo-tickets
 kt --create --if-not-exists --partitions 4 --topic data-demo-events
 kt --create --if-not-exists --partitions 4 --topic data-demo-streams
 kt --create --if-not-exists --partitions 4 --topic data-demo-enrichedeventsales
+kt --create --if-not-exists --partitions 4 --topic data-demo-TopUniqueStreamingCustomersResults
 
 pinot table venue
 pinot table email
@@ -60,3 +62,4 @@ pinot table ticket
 pinot table event
 pinot table stream
 pinot table enrichedeventsale
+pinot table TopUniqueStreamingCustomersResult
